@@ -1,5 +1,25 @@
 {% extends 'base.html' %}
 {% block start %}
-<a href="/product">PRODUCT</a>
-<a href="/cart">CART</a>
+<div>
+    <form class = 'col-6 mx-auto cart p-3 shadow-lg' method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h2>Home</h2>
+        <hr>
+        <div>
+            <label for="receipeName">Receipe Name</label>
+            <input id = 'receipeName' type="text" name="receipe-name" required />
+        </div>
+
+        <div>
+            <label for="receipeDescription">Receipe description</label>
+            <textarea id="receipeDescription" name="receipe-description"required ></textarea>
+            
+        <div>
+            <label for="receipeImage">Receipe Name</label>
+            <input id = 'receipeImage' type="file" name="receipe-image" />
+        </div>
+        <button type="submit">add Receipe</button>
+
+    </form>
+</div>
 {%endblock%}
