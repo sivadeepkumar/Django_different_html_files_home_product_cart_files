@@ -16,14 +16,25 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from home.views import home
+from home.views import home,delete,update
 from product.views import product
 from cart.views import cart
-
+from django.conf.urls.static import static
+from django.conf import settings
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
+    path('delete/<id>',delete,name='delete'),
+    path('update/<id>',update,name='update'),
     path('', home , name = "home"),
     path('product/', product ,name = 'product'),
     path('cart/', cart , name='cart'),
     path('admin/', admin.site.urls),
 ]
+
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root = settings.MEDIA_ROOT)
+
+urlpatterns += staticfiles_urlpatterns()

@@ -9,4 +9,4 @@ class Receipe(models.Model):
     receipe_image = models.ImageField()
 
     def __str__(self) -> str:
-        return '{},{},{}'.format(self.receipe_name,self.receipe_description,self.receipe_image)
+        return '{},{},{}'.format(self.receipe_name,self.receipe_description,self.receipe_image)     

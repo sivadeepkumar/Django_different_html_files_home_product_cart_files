@@ -3,7 +3,7 @@
 <div>
     <form class = 'col-6 mx-auto cart p-3 shadow-lg' method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        <h2>Home</h2>
+        <h2 class="text-center">Home</h2>
         <hr>
         <div>
             <label for="receipeName">Receipe Name</label>
@@ -19,7 +19,47 @@
             <input id = 'receipeImage' type="file" name="receipe-image" />
         </div>
         <button type="submit">add Receipe</button>
-
+        <br/>
+        <hr/>
     </form>
+    <form>
+        <label for="searchInput" >Search</label>
+        <input id="searchInput" type="search" name="search"/>
+        <br/>
+        
+            
+            <button type="submit" class="btn btn-primary" >Search</button>
+        
+    </form>
+    <!-- {{receipes}} -->
+   
+
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Sno</th>
+            <th scope="col">Receipe Name</th>
+            <th scope="col">Receipe Description</th>
+            <th scope="col">Receipe Image</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for receipe in receipes %}
+
+
+            <tr>
+                <th scope="row">{{forloop.counter}} Actual Id{{receipe.id}}</th>
+                <td>{{receipe.receipe_name}}</td>
+                <td>{{receipe.receipe_description}}</td>
+                <td><img src="/media/{{receipe.receipe_image}}" width="100px" height="100px"  /></td>
+                <td><a href="/delete/{{receipe.id}}" class="btn btn-danger">delete</a></td>
+                <td><a href="/update/{{receipe.id}}" class="btn btn-success">update</a></td>
+            </tr>
+            
+            {% endfor %}
+          
+        </tbody>
+      </table>
 </div>
 {%endblock%}
